@@ -9,12 +9,10 @@ async function bootstrap() {
   // Add a global prefix to all routes (e.g., /api/auth/login)
   app.setGlobalPrefix('api');
   
-  // This explicit CORS configuration is the fix for the "Network Error".
-  // It uses a regular expression to specifically allow requests from any
-  // localhost port, which is required by browsers for credentialed requests
-  // during local development.
+  // This explicit CORS configuration allows requests from our local development
+  // environment and our future deployed frontend on Vercel.
   const corsOptions = {
-    origin: /http:\/\/localhost:\d+$/, // Regex to allow any localhost port
+    origin: [/http:\/\/localhost:\d+$/, /https:\/\/.*\.vercel\.app/],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   };

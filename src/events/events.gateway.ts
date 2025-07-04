@@ -16,7 +16,7 @@ import { NotificationDocument } from '../notifications/schemas/notification.sche
 
 @WebSocketGateway({
   cors: {
-    origin: /http:\/\/localhost:\d+$/, // Match the main server's explicit CORS policy.
+    origin: [/http:\/\/localhost:\d+$/, /https:\/\/.*\.vercel\.app/], // Match the main server's explicit CORS policy.
     credentials: true,
   },
 })
